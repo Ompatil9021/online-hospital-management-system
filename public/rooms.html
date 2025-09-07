@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🛏️ Room Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e0f7fa; /* Light teal background */
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #007bff; /* Blue heading text */
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    #roomForm {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #roomForm label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #roomForm input[type="text"],
+    #roomForm select {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      width: calc(100% - 24px);
+    }
+
+    #roomForm button[type="submit"] {
+      background-color: #007bff; /* Blue button background */
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      margin-top: 15px;
+    }
+
+    #roomForm button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    #roomsTable {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 90%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    #roomsTable thead th {
+      background-color: #007bff; /* Blue table header */
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #roomsTable tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #roomsTable tbody td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    #roomsTable tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    #roomsTable tbody td:nth-child(3) { /* Type column */
+      text-transform: capitalize;
+    }
+
+    #roomsTable tbody td:nth-child(4) { /* Status column */
+      font-weight: bold;
+    }
+
+    #roomsTable tbody td:nth-child(4).Available {
+      color: green;
+    }
+
+    #roomsTable tbody td:nth-child(4).Occupied {
+      color: red;
+    }
+
+    #roomsTable tbody td:nth-child(4).Maintenance {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛏️ Hospital Room Management</h1>
+
+  <form id="roomForm">
+    <label for="roomNumber">Room Number:</label>
+    <input type="text" id="roomNumber" placeholder="Enter Room Number" required />
+
+    <label for="type">Room Type:</label>
+    <select id="type" required>
+      <option value="">-- Select Type --</option>
+      <option value="general">General</option>
+      <option value="icu">ICU</option>
+      <option value="deluxe">Deluxe</option>
+    </select>
+
+    <label for="status">Room Status:</label>
+    <select id="status" required>
+      <option value="">-- Select Status --</option>
+      <option value="available">Available</option>
+      <option value="occupied">Occupied</option>
+      <option value="maintenance">Maintenance</option>
+    </select>
+
+    <button type="submit">➕ Add Room</button>
+  </form>
+
+  <table id="roomsTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Room Number</th>
+        <th>Type</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="rooms.js"></script>
+</body>
+</html>

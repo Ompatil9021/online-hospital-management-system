@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🏥 Patient Discharge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        form.discharge-form {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .discharge-form label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .discharge-form input[type="number"],
+        .discharge-form select,
+        .discharge-form textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            width: calc(100% - 24px);
+        }
+
+        .discharge-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .discharge-form button {
+            background-color: #dc3545;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .discharge-form button:hover {
+            background-color: #c82333;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏥 Patient Discharge</h1>
+
+    <!-- ✅ Changed from <div> to <form> -->
+    <form class="discharge-form">
+        <label for="patientId">Patient ID:</label>
+        <input type="number" id="patientId" placeholder="Enter Patient ID to Discharge" required />
+
+        <label for="dischargeReason">Reason for Discharge:</label>
+        <select id="dischargeReason" required>
+            <option value="">-- Select Reason --</option>
+            <option value="Transfer to other hospital">Transfer to other hospital</option>
+            <option value="Feeling good - Home Discharge">Feeling good - Home Discharge</option>
+            <option value="Other">Other (Please specify)</option>
+        </select>
+
+        <label for="otherReason">Other Reason (if selected):</label>
+        <textarea id="otherReason" placeholder="Specify other reason (optional)" disabled></textarea>
+
+        <button type="submit" id="dischargeButton">Discharge Patient</button>
+    </form>
+
+    <a href="patients.html" class="back-button">Back to Patients</a>
+
+    <script src="discharge.js"></script>
+</body>
+</html>

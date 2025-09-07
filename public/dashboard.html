@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📊 Dashboard | Hospital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e0f7fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #007bff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 1000px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card h2 {
+      color: #007bff;
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .top-diseases {
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .top-diseases h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .top-diseases ol {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .top-diseases li {
+      font-size: 18px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-diseases li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 Hospital Dashboard</h1>
+
+  <div class="stats-grid">
+    <div class="card">
+      <h2>Total Patients</h2>
+      <p id="totalPatients">--</p>
+    </div>
+    <div class="card">
+      <h2>Total Doctors</h2>
+      <p id="totalDoctors">--</p>
+    </div>
+    <div class="card">
+      <h2>Average Age</h2>
+      <p id="avgAge">--</p>
+    </div>
+  </div>
+
+  <div class="top-diseases">
+    <h2>🦠 Top 3 Common Diseases</h2>
+    <ol id="diseaseList">
+      <li>Loading...</li>
+    </ol>
+  </div>
+
+  <script>
+    async function loadDashboard() {
+      try {
+        const res = await fetch('/api/dashboard');
+        const data = await res.json();
+
+        document.getElementById('totalPatients').textContent = data.totalPatients;
+        document.getElementById('totalDoctors').textContent = data.totalDoctors;
+        document.getElementById('avgAge').textContent = data.avgAge.toFixed(1);
+
+        const diseaseList = document.getElementById('diseaseList');
+        diseaseList.innerHTML = '';
+
+        if (data.topDiseases && data.topDiseases.length > 0) {
+          data.topDiseases.forEach(d => {
+            const li = document.createElement('li');
+            li.textContent = `${d.Condition} (${d.frequency} cases)`;
+            diseaseList.appendChild(li);
+          });
+        } else {
+          diseaseList.innerHTML = '<li>No data available</li>';
+        }
+      } catch (err) {
+        console.error('❌ Error loading dashboard:', err);
+      }
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>

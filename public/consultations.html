@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🩺 Consultations</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>📅 Add Consultation</h2>
+  <form id="consultForm">
+    <label>Patient ID: <input type="number" id="patientId" required /></label><br />
+    <label>Doctor ID: <input type="number" id="doctorId" required /></label><br />
+    <label>Consultation Date: <input type="date" id="consultDate" required /></label><br />
+    <label>Follow-Up Date: <input type="date" id="followUpDate" /></label><br />
+    <label>Notes: <input type="text" id="notes" /></label><br />
+    <button type="submit">➕ Add Consultation</button>
+  </form>
+
+  <h2>📋 All Consultations</h2>
+  <table border="1" id="consultationTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Consultation Date</th>
+        <th>Follow-Up Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="consultations.js"></script>
+</body>
+</html>

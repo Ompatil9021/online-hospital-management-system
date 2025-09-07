@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Management System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('2.jpeg') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      
+    }
+
+    .navbar .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #e3f2fd;
+    }
+
+    .overlay {
+      background: rgba(255, 255, 255, 0.85);
+      margin: 40px auto;
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 1000px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    .card:hover {
+      background-color: #e0f7fa;
+      transform: translateY(-4px);
+    }
+
+    .card span {
+      font-size: 22px;
+      margin-right: 10px;
+    }
+
+    footer {
+      background-color: #ffffffdd;
+      padding: 20px 20px;
+      margin-top: auto;
+      text-align: center;
+      color: #2c3e50;
+      border-top: 2px solid #ccc;
+    }
+
+    footer h2 {
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      margin: 6px 0;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 20px;
+      color: #2c3e50;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #007bff;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">🏥 CarePlus Hospital</div>
+    <a href="#contact">Contact Us</a>
+    
+  </div>
+
+  <div class="overlay">
+    <h1>🏥 Hospital Management System</h1>
+    <div class="menu">
+      <a href="patients.html" class="card"><span>👤</span>Patients</a>
+      <a href="doctors.html" class="card"><span>🩺</span>Doctors</a>
+      <a href="consultancy.html" class="card"><span>💬</span>Online Consultancy</a>
+      <a href="dietplans.html" class="card"><span>🥗</span>Diet Plans</a>
+      <a href="rooms.html" class="card"><span>🚪</span>Rooms</a>
+      <a href="billing.html" class="card"><span>💳</span>Billing</a>
+      <a href="history.html" class="card"><span>📋</span>Patient History</a>
+      <a href="medicalHistory.html" class="card"><span>📋</span>Medical History</a>
+      <a href="dashboard.html" class="card"><span>📊</span>Dashboard</a>
+
+      
+    </div>
+  </div>
+
+  <footer id="contact">
+    <h2>📞 Contact Us</h2>
+    <p>Phone: +91 9876543210</p>
+    <p>Email: support@careplushospital.com</p>
+    <p>Address: 123 Health St, Wellness City, Maharashtra 400001</p>
+
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>

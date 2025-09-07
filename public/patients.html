@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hospital - Patient Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e0f7fa; /* Light teal background */
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #007bff; /* Blue heading text */
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    form {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      margin-bottom: 15px;
+      padding: 12px;
+      width: calc(100% - 24px);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff; /* Blue button background */
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    h2 {
+      color: #007bff; /* Blue subheading text */
+      margin-top: 30px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 90%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    thead th {
+      background-color: #007bff; /* Blue table header */
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tbody td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .discharge-button {
+      background-color: #dc3545; /* Red button for discharge */
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .discharge-button:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏥 Add New Patient</h1>
+  <form id="patientForm">
+    <input type="text" id="name" placeholder="Name" required><br>
+    <input type="number" id="age" placeholder="Age" required><br>
+    <select id="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select><br>
+    <input type="text" id="contact" placeholder="Contact Number" required><br>
+    <input type="number" id="roomNo" placeholder="Room Number" required><br>
+    <input type="text" id="address" placeholder="Address" required><br>
+    <button type="submit">➕ Add Patient</button>
+  </form>
+
+  <h2>📋 Registered Patients</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Contact</th><th>Room</th><th>Address</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="patientsTable">
+      </tbody>
+  </table>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPatients();
+    });
+
+    async function loadPatients() {
+      const patientsTable = document.getElementById('patientsTable');
+      patientsTable.innerHTML = '<tr><td colspan="8">Loading patients...</td></tr>';
+
+      try {
+        const response = await fetch('/api/patients');
+        const data = await response.json();
+
+        if (data.length === 0) {
+          patientsTable.innerHTML = '<tr><td colspan="8">No patients registered.</td></tr>';
+          return;
+        }
+
+        patientsTable.innerHTML = '';
+        data.forEach(patient => {
+          const row = patientsTable.insertRow();
+          row.insertCell().textContent = patient.PatientID;
+          row.insertCell().textContent = patient.Name;
+          row.insertCell().textContent = patient.Age;
+          row.insertCell().textContent = patient.Gender;
+          row.insertCell().textContent = patient.Contact;
+          row.insertCell().textContent = patient.RoomNo;
+          row.insertCell().textContent = patient.Address;
+          const actionsCell = row.insertCell();
+          const dischargeButton = document.createElement('button');
+          dischargeButton.textContent = 'Discharge';
+          dischargeButton.classList.add('discharge-button');
+          dischargeButton.addEventListener('click', () => {
+            window.location.href = `discharge.html?patientId=${patient.PatientID}`;
+          });
+          actionsCell.appendChild(dischargeButton);
+        });
+      } catch (error) {
+        console.error('Error loading patients:', error);
+        patientsTable.innerHTML = '<tr><td colspan="8">Failed to load patients.</td></tr>';
+      }
+    }
+  </script>
+</body>
+</html>
