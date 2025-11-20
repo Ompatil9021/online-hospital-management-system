@@ -26,44 +26,6 @@ It manages **patients, doctors, billing, rooms, diet plans, consultations, medic
 - **Frontend**: HTML, CSS, JavaScript  
 - **Database**: Microsoft SQL Server  
 
----
-
-## 📂 Project Structure
-
-HospitalManagementSystem/
-│
-├── backend/
-│ ├── server.js # Main Express server
-│ ├── dbconfig.js # SQL Server configuration
-│ ├── routes/ # Route files
-│ │ ├── patients.js
-│ │ ├── doctors.js
-│ │ ├── consultations.js
-│ │ ├── medicalHistory.js
-│ │ ├── dietPlans.js
-│ │ ├── rooms.js
-│ │ ├── billing.js
-│ │ ├── admin.js
-│ │ ├── onlineConsultancy.js
-│ │ └── discharge.js
-│
-├── public/ # Frontend files
-│ ├── index.html
-│ ├── patients.html
-│ ├── doctors.html
-│ ├── consultancy.html
-│ ├── medicalHistory.html
-│ ├── discharge.html
-│ ├── billing.html
-│ ├── rooms.html
-│ ├── adminLogin.html
-│ ├── styles.css
-│ └── script.js
-│
-└── README.md
-
-yaml
-Copy code
 
 ---
 
@@ -101,4 +63,5 @@ The server will start at:
 👉 http://localhost:5000
 
 5️⃣ Open the Frontend
+
 Simply open public/index.html in a browser (or access via server at http://localhost:5000).
